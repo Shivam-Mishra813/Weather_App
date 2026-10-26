@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyCast - Professional Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-mode">
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <i class="fa-solid fa-cloud-sun-rain"></i>
+                <span>SkyCast</span>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for a city..." autocomplete="off">
+                <button id="search-btn" aria-label="Search City"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button id="location-btn" aria-label="Current Location"><i class="fa-solid fa-location-crosshairs"></i></button>
+            </div>
+
+            <div class="controls">
+                <button id="unit-toggle" class="toggle-btn">°C</button>
+                <button id="theme-toggle" class="toggle-btn" aria-label="Toggle Theme"><i class="fa-solid fa-sun"></i></button>
+            </div>
+        </header>
+
+        <!-- Status Messages -->
+        <div id="loading-state" class="status-state hidden">
+            <div class="spinner"></div>
+            <p>Fetching weather data...</p>
+        </div>
+        
+        <div id="error-state" class="status-state hidden">
+            <i class="fa-solid fa-circle-exclamation error-icon"></i>
+            <p id="error-message">City not found. Please try again.</p>
+        </div>
+
+        <div id="empty-state" class="status-state">
+            <i class="fa-solid fa-earth-americas empty-icon"></i>
+            <p>Enter a city or use your location to check the weather.</p>
+        </div>
+
+        <!-- Main Weather Dashboard (Hidden until searched) -->
+        <main id="weather-dashboard" class="hidden">
+            <!-- Top Section: Current Weather -->
+            <div class="current-weather-card glass-card">
+                <div class="current-info">
+                    <h1 id="city-name">London, GB</h1>
+                    <p id="current-date">Monday, 26 Oct, 10:00 AM</p>
+                    <div class="temp-container">
+                        <h2 id="current-temp">22°</h2>
+                        <div class="weather-desc-container">
+                            <img id="weather-icon" src="" alt="Weather Icon">
+                            <span id="weather-desc">Broken Clouds</span>
+                        </div>
+                    </div>
+                    <div class="high-low">
+                        <span>H: <span id="temp-max">25°</span></span>
+                        <span>L: <span id="temp-min">18°</span></span>
+                        <span>Feels like: <span id="feels-like">23°</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather Details Grid -->
+            <div class="details-grid">
+                <div class="detail-card glass-card">
+                    <i class="fa-solid fa-droplet"></i>
+                    <div>
+                        <p class="detail-title">Humidity</p>
+                        <p class="detail-value" id="humidity">65%</p>
+                    </div>
+                </div>
+                <div class="detail-card glass-card">
+                    <i class="fa-solid fa-wind"></i>
+                    <div>
+                        <p class="detail-title">Wind Speed</p>
+                        <p class="detail-value" id="wind-speed">12 km/h</p>
+                    </div>
+                </div>
+                <div class="detail-card glass-card">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <div>
+                        <p class="detail-title">Pressure</p>
+                        <p class="detail-value" id="pressure">1012 hPa</p>
+                    </div>
+                </div>
+                <div class="detail-card glass-card">
+                    <i class="fa-solid fa-eye"></i>
+                    <div>
+                        <p class="detail-title">Visibility</p>
+                        <p class="detail-value" id="visibility">10 km</p>
+                    </div>
+                </div>
+                <div class="detail-card glass-card">
+                    <i class="fa-solid fa-sunrise"></i>
+                    <div>
+                        <p class="detail-title">Sunrise</p>
+                        <p class="detail-value" id="sunrise">06:30 AM</p>
+                    </div>
+                </div>
+                <div class="detail-card glass-card">
+                    <i class="fa-solid fa-sunset"></i>
+                    <div>
+                        <p class="detail-title">Sunset</p>
+                        <p class="detail-value" id="sunset">06:45 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forecasts -->
+            <div class="forecast-container">
+                <!-- 24-Hour Forecast (3-hour intervals) -->
+                <div class="hourly-forecast glass-card">
+                    <h3>24-Hour Forecast</h3>
+                    <div class="hourly-scroll" id="hourly-container">
+                        <!-- JS injected content -->
+                    </div>
+                </div>
+
+                <!-- 5-Day Forecast -->
+                <div class="daily-forecast glass-card">
+                    <h3>5-Day Forecast</h3>
+                    <div id="daily-container">
+                        <!-- JS injected content -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
